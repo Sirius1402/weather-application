@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
+import { HashRouter, Switch, Route } from 'react-router-dom'
+import Home from './pages/Home';
+import PresWeather from './pages/PresWeather';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HashRouter>
+        <Navbar />
+        <Footer />
+        <Switch>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/present-weather">
+            <PresWeather />
+          </Route>
+        </Switch>
+      </HashRouter>
     </div>
   );
 }
