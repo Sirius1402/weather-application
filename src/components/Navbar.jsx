@@ -12,6 +12,9 @@ const Navbar = () => {
                 <li className="nav-li">
                     <Link to="/present-weather" replace>Present Weather</Link>
                 </li>
+                <li className="nav-li">
+                    <Link to="/world-weather" replace>World-wide weathher</Link>
+                </li>
             </ul>            
         </nav>
     )

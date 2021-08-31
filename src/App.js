@@ -1,9 +1,10 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import './App.css';
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import WorldWeather from './pages/WorldWeather';
 import Home from './pages/Home';
 import PresWeather from './pages/PresWeather';
+import './App.css';
+import { HashRouter, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route exact path="/present-weather">
             <PresWeather />
+          </Route>
+          <Route exact path="/world-weather">
+            <WorldWeather />
           </Route>
         </Switch>
       </HashRouter>
