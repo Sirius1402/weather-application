@@ -13,6 +13,9 @@ const Navbar = () => {
                     <Link to="/present-weather" replace>Present Weather</Link>
                 </li>
                 <li className="nav-li">
+                    <Link to="/forecast" replace>Forecast</Link>
+                </li>
+                <li className="nav-li">
                     <Link to="/world-weather" replace>World-wide weathher</Link>
                 </li>
             </ul>            
