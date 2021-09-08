@@ -63,6 +63,7 @@ const WorldWeather = () => {
                         </p>
                         <p>Temperature: {weather.current.temp_c} {'\u2103'}</p>
                         <p>Feels like: {weather.current.feelslike_c} {'\u2103'}</p>
+                        <p>Air pressure: {weather.current.pressure_mb} mb</p>
                         <p>Wind direction: {weather.current.wind_dir}</p>
                         <p>Wind speed: {weather.current.wind_kph} km/h</p>
                         <p>Gusting speed: {weather.current.gust_kph} km/h</p>
