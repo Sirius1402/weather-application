@@ -8,27 +8,20 @@ import './App.css';
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
 function App() {
+
   return (
-    <div className="App">
-      <HashRouter>
+    <HashRouter>
+      <div className="App">
         <Navbar />
-        <Footer />
         <Switch>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/present-weather">
-            <PresWeather />
-          </Route>
-          <Route exact path="/forecast">
-            <Forecast />
-          </Route>
-          <Route exact path="/world-weather">
-            <WorldWeather />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/present-weather" component={PresWeather} />
+          <Route exact path="/forecast" component={Forecast} />
+          <Route exact path="/world-weather" component={WorldWeather} />
         </Switch>
-      </HashRouter>
-    </div>
+        <Footer />
+      </div>
+    </HashRouter>
   );
 }
 

@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav>
             <ul className="navbar">
                 <li className="nav-li">
-                    <Link to="/home" replace>Home</Link>
+                    <Link to="/" replace>Home</Link>
                 </li>
                 <li className="nav-li">
                     <Link to="/present-weather" replace>Present Weather</Link>
