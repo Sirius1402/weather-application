@@ -18,9 +18,9 @@ function App() {
           <Route exact path="/present-weather" component={PresWeather} />
           <Route exact path="/forecast" component={Forecast} />
           <Route exact path="/world-weather" component={WorldWeather} />
-        </Switch>
+        </Switch></div>
         <Footer />
-      </div>
+      
     </HashRouter>
   );
 }

@@ -58,17 +58,18 @@ const Forecast = () => {
     console.log(hourlyForecast)
 
     return (
-        <div>
+        <section>
             <div className="ww-card">
                 <label htmlFor="city">Search city name: {' '}</label>
                 <input
                     type="text"
                     value={city}
-                    onChange={(e) => { setCity(e.target.value); getLocations(e.target.value) }}
+                    onChange={(e) => { setCity(e.target.value);
+                                       getLocations(e.target.value) }}
                 />
                 <button
                     onClick={() => getForecast(yourCity)}
-                    className="ww-button">Show Forecast</button>
+                    className="ww-button">Show forecast</button>
             </div>
             {forecast &&
                 <div className="my-card">
@@ -77,12 +78,14 @@ const Forecast = () => {
                         {forecast.forecast.forecastday?.map(day =>
                             <div key={day.date} className="dgrid-item">
                                 <p>Day: <Moment format="ddd, Do-MMM-YYYY">{day.date}</Moment></p>
-                                <button onClick={() => {getHourlyForecast(day.date); setShowDailyForecast(false); setShowHourlyForecast(true)}}
-                                    className="ww-button">Show hourly forecast</button>
+                                <button onClick={() => {getHourlyForecast(day.date); 
+                                                        setShowDailyForecast(false); 
+                                                        setShowHourlyForecast(true)}}
+                                    className="ww-button forecast-btn">Show hourly forecast</button>
                                 {showDailyForecast &&
                                     <>
                                         <p>Condition: {day.day.condition.text}</p>
-                                        <img src={day.day.condition.icon} alt="" width="64px" height="64px" />
+                                        <img className="forecast-img" src={day.day.condition.icon} alt="" width="64px" height="64px" />
                                         {day.alerts && <p className="alert">Alerts: {day.alerts.alert[alert.length - 1].event}</p>}
                                         <p>Min. temperature: {day.day.mintemp_c} {'\u2103'}</p>
                                         <p>Max. temperature: {day.day.maxtemp_c} {'\u2103'}</p>
@@ -108,15 +111,15 @@ const Forecast = () => {
                 </div>}
 
             {showHourlyForecast &&
-                <div className="h-forecast">
+                <div className="h-forecast"
+                onMouseLeave={()=>{setShowDailyForecast(true); setShowHourlyForecast(false)}}
+                >
                     {hourlyForecast.map((hour) =>
                         moment().isAfter(hour.time) ? undefined : 
-                        <div 
-                        onMouseLeave={()=>{setShowDailyForecast(true); setShowHourlyForecast(false)}}
-                        key={hour.time}>
+                        <div key={hour.time} className="hgrid-item">
                             <p>Time: {hour.time.split(" ")[1]}</p>
                             <p>Condition: {hour.condition.text}</p>
-                            <img src={hour.condition.icon} />
+                            <img src={hour.condition.icon} alt="" />
                             <p>Temperature: {hour.temp_c} {'\u2103'}</p>
                             <p>Feels like: {hour.feelslike_c} {'\u2103'}</p>
                             <p>Wind: {hour.wind_kph} km/h {hour.wind_dir}</p>
@@ -130,7 +133,7 @@ const Forecast = () => {
                                 </> : undefined}
                         </div>)}
                 </div>}
-        </div>
+        </section>
     )
 }
 

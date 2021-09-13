@@ -21,6 +21,8 @@ const PresWeather = () => {
         }
     }, [latitude, longitude, error])
 
+   
+
     const getWeather = async (Latitude, Longitude) => {
         const res = await fetch(
             `https://api.weatherapi.com/v1/current.json?key=d2f438b9e782484b96471500212708&q=${Latitude},${Longitude}&aqi=no`)
@@ -34,7 +36,7 @@ const PresWeather = () => {
     console.log(weather)
 
     return (
-        <div>
+        <section>
             <button className="my-btn"
             onClick={() => getWeather(lat, long)}
             >Show present weather</button>
@@ -57,7 +59,7 @@ const PresWeather = () => {
                         <p>UV index: {weather.current.uv}</p>
                     </div>
                 </div>}
-        </div>
+        </section>
     )
 }
 

@@ -42,7 +42,7 @@ const WorldWeather = () => {
         console.log(weather)
 
     return (
-        <>
+        <section>
         <div className="ww-card">
             <label htmlFor="city">Search city name: {' '}</label>
             <input
@@ -73,7 +73,7 @@ const WorldWeather = () => {
                         <p>UV index: {weather.current.uv}</p>
                     </div>
                 </div>}
-        </>
+        </section>
     )
 }
 

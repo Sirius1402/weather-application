@@ -1,22 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+
+    &:focus, &:hover, &:visited, &:StyledLink, &:active {
+        text-decoration: none;
+    }
+`;
 
 const Navbar = () => {
     return (
         <nav>
             <ul className="navbar">
                 <li className="nav-li">
-                    <Link to="/" replace>Home</Link>
+                    <StyledLink to="/" replace>Home</StyledLink>
                 </li>
                 <li className="nav-li">
-                    <Link to="/present-weather" replace>Present Weather</Link>
+                    <StyledLink to="/present-weather" replace>Present Weather</StyledLink>
                 </li>
                 <li className="nav-li">
-                    <Link to="/forecast" replace>Forecast</Link>
+                    <StyledLink to="/forecast" replace>Forecast</StyledLink>
                 </li>
                 <li className="nav-li">
-                    <Link to="/world-weather" replace>World-wide weathher</Link>
+                    <StyledLink to="/world-weather" replace>World-wide weathher</StyledLink>
                 </li>
             </ul>            
         </nav>

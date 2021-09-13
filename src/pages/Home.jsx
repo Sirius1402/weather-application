@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
     return (
-        <div>
+        <section>
             <div className="ww-card">
             <h2>Hello and welcome to "My weather" !</h2>
             <br></br>
@@ -11,7 +11,7 @@ const Home = () => {
             <p>Most important, it is our weather.</p>
             <p>Thank you very much, because you are here and please enjoy it!</p>
             </div>
-        </div>
+        </section>
     )
 }
 
