@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 
 const WorldWeather = () => {
 
-    const [city, setCity] = useState('')
+    const [searchedCity, setSearchedCity] = useState('')
     const [locations, setLocations] = useState([])
     const [yourCity, setYourCity] = useState('')
     const [weather, setWeather] = useState()
     
+    
     useEffect(()=>{
+        
         for (let i=0; i<locations.length; i++){
-            if(locations[i].name.split(",")[0] === city){
+            if(locations[i].name.split(",")[0] === searchedCity){
                 setYourCity(locations[i].name.split(",")[0])
             }
         }
+    
     },[locations])
 
-    console.log(yourCity)
+    // console.log(yourCity)
 
     const getLocations = async (city)=>{
         const res = await fetch(
@@ -27,7 +30,7 @@ const WorldWeather = () => {
                 alert('Please, try another city!')
             }
         }
-        console.log(locations)
+        // console.log(locations)
     
         const getWeather = async (city) => {
             const res = await fetch(
@@ -39,24 +42,27 @@ const WorldWeather = () => {
                 alert('Wrong request!')
             }
         }
-        console.log(weather)
+        // console.log(weather)
 
     return (
         <section>
         <div className="ww-card">
             <label htmlFor="city">Search city name: {' '}</label>
             <input
+            data-testid="input"
+            placeholder="City Name"
             type="text"
-            value={city}
-            onChange={(e)=>{setCity(e.target.value) ; getLocations(e.target.value)}}
+            value={searchedCity}
+            onChange={(e)=>{setSearchedCity(e.target.value); getLocations(e.target.value)}}
             />
-            <button 
+            <button
+            data-testid="ww-button" 
             onClick={()=>getWeather(yourCity)}
             className="ww-button">Show weather</button>
         </div>
         {weather &&
                 <div className="my-card">
-                    <h4 className="my-card-title">Location: {weather.location.name}</h4>
+                    <h4 className="my-card-title">Location: {weather.location.name}, {weather.location.country}</h4>
                     <div className="my-card-body">
                         <p>Condition: {weather.current.condition.text} {' '}
                             <img src={weather.current.condition.icon} alt="" className="image" />

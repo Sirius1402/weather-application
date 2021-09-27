@@ -19,7 +19,7 @@ const Navbar = () => {
                     <StyledLink to="/" replace>Home</StyledLink>
                 </li>
                 <li className="nav-li">
-                    <StyledLink to="/present-weather" replace>Present Weather</StyledLink>
+                    <StyledLink to="/local-weather" replace>Local Weather</StyledLink>
                 </li>
                 <li className="nav-li">
                     <StyledLink to="/forecast" replace>Forecast</StyledLink>

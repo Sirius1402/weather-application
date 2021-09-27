@@ -4,22 +4,21 @@ import { usePosition } from 'use-position';
 const PresWeather = () => {
 
     const [weather, setWeather] = useState()
-    const [lat, setLat] = useState()
-    const [long, setLong] = useState()
     const {
         latitude,
         longitude,
         error,
     } = usePosition();
 
-    useEffect(() => {
+   
+
+    useEffect(()=>{
         if (error) {
             alert('Location not available!')
         } else {
-            setLat(latitude)
-            setLong(longitude)
+        getWeather(latitude,longitude)
         }
-    }, [latitude, longitude, error])
+    },[latitude,longitude,error])
 
    
 
@@ -30,19 +29,17 @@ const PresWeather = () => {
             const weather = await res.json()
             setWeather(weather)
         } else {
-            alert('Wrong request!')
+            return
         }
     }
-    console.log(weather)
+    // console.log(weather)
 
     return (
         <section>
-            <button className="my-btn"
-            onClick={() => getWeather(lat, long)}
-            >Show present weather</button>
             {weather &&
                 <div className="my-card">
-                    <h4 className="my-card-title">Location: {weather.location.name}</h4>
+                    <h4 
+                    className="my-card-title">Location: {weather.location.name}, {weather.location.country}</h4>
                     <div className="my-card-body">
                         <p>Condition: {weather.current.condition.text} {' '}
                             <img src={weather.current.condition.icon} alt="" className="image" />

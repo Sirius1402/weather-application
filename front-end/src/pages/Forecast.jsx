@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const Forecast = () => {
 
-    const [city, setCity] = useState('')
+    const [searchedCity, setSearchedCity] = useState('')
     const [locations, setLocations] = useState([])
     const [yourCity, setYourCity] = useState('')
     const [forecast, setForecast] = useState()
@@ -13,14 +13,16 @@ const Forecast = () => {
     const [showHourlyForecast, setShowHourlyForecast] = useState(false)
 
     useEffect(() => {
+        
         for (let i = 0; i < locations.length; i++) {
-            if (locations[i].name.split(",")[0] === city) {
+            if (locations[i].name.split(",")[0] === searchedCity) {
                 setYourCity(locations[i].name.split(",")[0])
             }
         }
+       
     }, [locations])
 
-    console.log(yourCity)
+    // console.log(yourCity)
 
     const getLocations = async (city) => {
         const res = await fetch(
@@ -32,7 +34,7 @@ const Forecast = () => {
             alert('Please, try another city!')
         }
     }
-    console.log(locations)
+    // console.log(locations)
 
     const getForecast = async (city) => {
         const res = await fetch(
@@ -44,7 +46,7 @@ const Forecast = () => {
             alert('Wrong request!')
         }
     }
-    console.log(forecast)
+    // console.log(forecast)
     const getHourlyForecast = (date) => {
         for (let i = 0; i < forecast.forecast.forecastday.length; i++) {
             if (date === forecast.forecast.forecastday[i].date) {
@@ -55,25 +57,28 @@ const Forecast = () => {
     }
 
 
-    console.log(hourlyForecast)
+    // console.log(hourlyForecast)
 
     return (
         <section>
             <div className="ww-card">
                 <label htmlFor="city">Search city name: {' '}</label>
                 <input
+                    data-testid="input-fcast"
+                    placeholder="City Name"
                     type="text"
-                    value={city}
-                    onChange={(e) => { setCity(e.target.value);
+                    value={searchedCity}
+                    onChange={(e) => { setSearchedCity(e.target.value);
                                        getLocations(e.target.value) }}
                 />
                 <button
+                    data-testid="btn-fcast"
                     onClick={() => getForecast(yourCity)}
                     className="ww-button">Show forecast</button>
             </div>
             {forecast &&
                 <div className="my-card">
-                    <h4 className="my-card-title">Location: {forecast.location.name}</h4>
+                    <h4 className="my-card-title">Location: {forecast.location.name}, {forecast.location.country}</h4>
                     <div className="day-grid">
                         {forecast.forecast.forecastday?.map(day =>
                             <div key={day.date} className="dgrid-item">

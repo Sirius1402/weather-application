@@ -12,15 +12,18 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
-        <Navbar />
+        <div data-testid="navbar">
+        <Navbar/>
+        </div>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/present-weather" component={PresWeather} />
+          <Route exact path="/local-weather" component={PresWeather} />
           <Route exact path="/forecast" component={Forecast} />
           <Route exact path="/world-weather" component={WorldWeather} />
         </Switch></div>
+        <div data-testid="footer">
         <Footer />
-      
+      </div>
     </HashRouter>
   );
 }
