@@ -23,3 +23,6 @@ front-end\node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src\Tests\Forecast.test.js
+src\Tests\WorldWeather.test.js
+src\mocks
