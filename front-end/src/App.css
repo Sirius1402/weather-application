@@ -113,13 +113,17 @@ footer {
   flex-direction: column;
   background-color: #0c1415;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   bottom: 0;
 }
 
 .footer-nav {
   display: none;
+}
+
+footer p{
+  color: white;
 }
 
 @media all and (min-width: 401px) { 

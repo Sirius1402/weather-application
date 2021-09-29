@@ -25,7 +25,7 @@ const Navbar = () => {
                     <StyledLink to="/forecast" replace>Forecast</StyledLink>
                 </li>
                 <li className="nav-li">
-                    <StyledLink to="/world-weather" replace>World-wide weathher</StyledLink>
+                    <StyledLink to="/world-weather" replace>World-Wide Weather</StyledLink>
                 </li>
             </ul>            
         </nav>

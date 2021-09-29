@@ -47,10 +47,11 @@ const WorldWeather = () => {
     return (
         <section>
         <div className="ww-card">
-            <label htmlFor="city">Search city name: {' '}</label>
+            <h1 data-testid="wWeather">World-wide weather</h1><br/>
+            <label htmlFor="location">Search location: {' '}</label>
             <input
             data-testid="input"
-            placeholder="City Name"
+            placeholder="Location Name"
             type="text"
             value={searchedCity}
             onChange={(e)=>{setSearchedCity(e.target.value); getLocations(e.target.value)}}

@@ -2,7 +2,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WorldWeather from './pages/WorldWeather';
 import Home from './pages/Home';
-import PresWeather from './pages/PresWeather';
+import LocalWeather from './pages/LocalWeather';
 import Forecast from './pages/Forecast';
 import './App.css';
 import { HashRouter, Switch, Route } from 'react-router-dom'
@@ -17,7 +17,7 @@ function App() {
         </div>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/local-weather" component={PresWeather} />
+          <Route exact path="/local-weather" component={LocalWeather} />
           <Route exact path="/forecast" component={Forecast} />
           <Route exact path="/world-weather" component={WorldWeather} />
         </Switch></div>

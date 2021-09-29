@@ -1,14 +1,14 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import PresWeather from '../pages/PresWeather'
+import LocalWeather from '../pages/LocalWeather'
 
 
 
-describe("PresWeather component", ()=>{
+describe("LocalWeather component", ()=>{
     window.alert = jest.fn();    
     test('fetch and display', async ()=>{
         window.alert.mockClear();
-        const {findByText} = render(<PresWeather />)
+        const {findByText} = render(<LocalWeather />)
         expect(await findByText(/london/i)).toBeInTheDocument()
         })
 })

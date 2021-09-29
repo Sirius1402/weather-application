@@ -44,21 +44,24 @@ const Footer = () => {
                         <StyledLink to="/forecast" replace>Forecast</StyledLink>
                     </li>
                     <li className="footer-li">
-                        <StyledLink to="/world-weather" replace>World-wide weathher</StyledLink>
+                        <StyledLink to="/world-weather" replace>World-Wide Weather</StyledLink>
                     </li>
                     <li className="footer-li">
-                        <Mailto email="razvanciobanel@protonmail.com" title="razvanciobanel@protonmail.com" subject="" body="" >
+                        <Mailto 
+                        data-testid="email"
+                        email="razvanciobanel@protonmail.com" title="razvanciobanel@protonmail.com" subject="" body="" >
                             Contact
                         </Mailto>
                     </li>
                 </ul>
             </div>
             <div className="footer-2nd">
-           <p style={{color:"white"}}> Powered by <MyLink 
+           <p> Powered by <MyLink 
+           data-testid="anchor-tag"
             href="https://www.weatherapi.com/"  
             target="_blank" title="Free Weather API" 
             rel="noopener noreferrer">WeatherAPI.com</MyLink></p>
-            <p style={{color:"white"}}>&copy; Designed by Razvan-Cosmin Ciobanel</p>
+            <p>&copy; Designed by Razvan-Cosmin Ciobanel</p>
             </div>
 
         </footer>

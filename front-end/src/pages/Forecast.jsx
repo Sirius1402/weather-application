@@ -62,10 +62,11 @@ const Forecast = () => {
     return (
         <section>
             <div className="ww-card">
-                <label htmlFor="city">Search city name: {' '}</label>
+                <h1 data-testid="forecast">Forecast</h1><br/>
+                <label htmlFor="location">Search location: {' '}</label>
                 <input
                     data-testid="input-fcast"
-                    placeholder="City Name"
+                    placeholder="Location Name"
                     type="text"
                     value={searchedCity}
                     onChange={(e) => { setSearchedCity(e.target.value);
