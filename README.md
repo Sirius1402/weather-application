@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Weather Application - My Weatther
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a weather website made with ReactJS and powered by [WeatherAPI.com](https://www.weatherapi.com/). It provides data for local weather, daily and hourly forecast and world-wide weather.
 
-## Available Scripts
+The website is responsive at 401 pixels, break point. 
 
-In the project directory, you can run:
+For testing the application I have used React Testing Library and Mock Service Worker, to mock API calls.
 
-### `npm start`
+After you clone the project, to start it, run the following commands in the terminal: `cd front-end`, `npm install` and `npm start`. To start the tests, run `npm test` in the terminal.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The website has four pages: Home, Local Weather, Forecast and World-Wide Weather.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Home Page
+It is a short description of the website
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![ Home Page ](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/home.jpg)   
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Local Weather
+On this page I have used the custom hook `usePosition` to get the client's  latitude and longitute. Once this data was available I used it as query selector to call Weather API with a GET request.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Local Weather](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/localWeather.jpg) 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+## Forecast
+On this page the user can search for a location and he will get the forecast for 3 days and hourly for each day. The hourly forecast is displayed only after the 'Show hourly forecast' button is pushed.
+![Daily Forecast](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/dailyForecast.jpg)
 
-### `npm run eject`
+---
+![Hourly Forecast](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/hourlyForecast.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## World-Wide Weather
+On this page the user can search for a location and get the present weather at that location.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![World-Wide Weather](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/worldWideWeather.jpg)
