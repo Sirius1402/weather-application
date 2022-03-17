@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("C:\Users\x64\Documents\Projects\weather\front-end\src\Background\mauritius.jpeg")
+  background: url("/src/mauritius.jpg")
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

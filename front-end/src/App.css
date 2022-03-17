@@ -34,7 +34,7 @@ nav {
 }
 section {
   flex: 1 1 0%;
-  width: 100vw;
+  width: 95vw;
   margin-top: 50px;
 }
 
@@ -154,7 +154,7 @@ footer p {
     float: inline-end;
   }
   .ww-card {
-    margin-top: 100px;
+    margin-top: 30px;
   }
   .ww-button {
     padding: 0.7rem;

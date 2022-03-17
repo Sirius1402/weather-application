@@ -17,7 +17,7 @@ front-end\node_modules
 .env.development.local
 .env.test.local
 .env.production.local
-*.jpeg
+
 
 
 npm-debug.log*

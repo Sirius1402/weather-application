@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import moment from "moment";
+import Input from "../components/forecast components/Input";
 
 const Forecast = () => {
   const [searchedCity, setSearchedCity] = useState("");
@@ -13,7 +14,7 @@ const Forecast = () => {
 
   useEffect(() => {
     for (let i = 0; i < locations.length; i++) {
-      if (locations[i].name.split(",")[0] === searchedCity) {
+      if (locations[i].name.split(",")[0].toLowerCase() === searchedCity.toLowerCase()) {
         setYourCity(locations[i].name.split(",")[0]);
       }
     }
@@ -28,9 +29,7 @@ const Forecast = () => {
     if (res.status === 200) {
       const locations = await res.json();
       setLocations(locations);
-    } else {
-      alert("Please, try another city!");
-    }
+    } 
   };
   // console.log(locations)
 
@@ -57,30 +56,22 @@ const Forecast = () => {
 
   // console.log(hourlyForecast)
 
+  const handleChange = (e) => {
+    setSearchedCity(e.target.value);
+    getLocations(e.target.value);
+  };
+
+  const handleClick = () => {
+    getForecast(yourCity);
+  };
+
   return (
     <section>
-      <div className="ww-card">
-        <h1 data-testid="forecast">Forecast</h1>
-        <br />
-        <label htmlFor="location">Search location: </label>
-        <input
-          data-testid="input-fcast"
-          placeholder="Location Name"
-          type="text"
-          value={searchedCity}
-          onChange={(e) => {
-            setSearchedCity(e.target.value);
-            getLocations(e.target.value);
-          }}
-        />
-        <button
-          data-testid="btn-fcast"
-          onClick={() => getForecast(yourCity)}
-          className="ww-button"
-        >
-          Show forecast
-        </button>
-      </div>
+      <Input
+        handleChange={handleChange}
+        searchedCity={searchedCity}
+        handleClick={handleClick}
+      />
       {forecast && (
         <div className="my-card">
           <h4 className="my-card-title">
