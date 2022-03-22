@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Input from "../components/ww components/Input";
+import Weather from "../components/ww components/Weather";
 
 const WorldWeather = () => {
   const [searchedCity, setSearchedCity] = useState("");
@@ -8,7 +10,10 @@ const WorldWeather = () => {
 
   useEffect(() => {
     for (let i = 0; i < locations.length; i++) {
-      if (locations[i].name.split(",")[0] === searchedCity) {
+      if (
+        locations[i].name.split(",")[0].toLowerCase() ===
+        searchedCity.toLowerCase()
+      ) {
         setYourCity(locations[i].name.split(",")[0]);
       }
     }
@@ -42,61 +47,26 @@ const WorldWeather = () => {
   };
   // console.log(weather)
 
+  const handleChange = (e) => {
+    setSearchedCity(e.target.value);
+    getLocations(e.target.value);
+  };
+
+  const handleClick = () => {
+    getWeather(yourCity);
+  };
+
   return (
     <section>
-      <div className="ww-card">
-        <h1 data-testid="wWeather">World-wide weather</h1>
-        <br />
-        <label htmlFor="location">Search location: </label>
-        <input
-          data-testid="input"
-          placeholder="Location Name"
-          type="text"
-          value={searchedCity}
-          onChange={(e) => {
-            setSearchedCity(e.target.value);
-            getLocations(e.target.value);
-          }}
-        />
-        <button
-          data-testid="ww-button"
-          onClick={() => getWeather(yourCity)}
-          className="ww-button"
-        >
-          Show weather
-        </button>
-      </div>
-      {weather && (
-        <div className="my-card">
-          <h4 className="my-card-title">
-            Location: {weather.location.name}, {weather.location.country}
-          </h4>
-          <div className="my-card-body">
-            <p>
-              Condition: {weather.current.condition.text}{" "}
-              <img
-                src={weather.current.condition.icon}
-                alt=""
-                className="image"
-              />
-            </p>
-            <p>
-              Temperature: {weather.current.temp_c} {"\u2103"}
-            </p>
-            <p>
-              Feels like: {weather.current.feelslike_c} {"\u2103"}
-            </p>
-            <p>Air pressure: {weather.current.pressure_mb} mb</p>
-            <p>Wind direction: {weather.current.wind_dir}</p>
-            <p>Wind speed: {weather.current.wind_kph} km/h</p>
-            <p>Gusting speed: {weather.current.gust_kph} km/h</p>
-            <p>Visibility: {weather.current.vis_km} km</p>
-            <p>Precipitations: {weather.current.precip_mm} mm</p>
-            <p>Relative Humidity: {weather.current.humidity} %</p>
-            <p>UV index: {weather.current.uv}</p>
-          </div>
-        </div>
-      )}
+      <Input
+        handleChange={handleChange}
+        searchedCity={searchedCity}
+        handleClick={handleClick}
+      />
+      {weather && 
+        <Weather 
+          weather={weather} 
+      />}
     </section>
   );
 };
