@@ -10,7 +10,7 @@ For testing the application I have used React Testing Library and Mock Service W
 
 After you clone the project, to start it, follow the instructions:
 - To start the backend, write in the terminal: `cd back-end`, `npm install`, `node server`
--  To start the front end: open in a new window "front-end" folder and write in the terminal:`npm install` and `npm start`. To start the tests, run `npm test` in the terminal.
+- To start the front end: open in a new window "front-end" folder and write in the terminal:`npm install` and `npm start`. To start the tests, run `npm test` in the terminal.
 
 The website has four pages: Home, Local Weather, Forecast and World-Wide Weather.
 
@@ -23,7 +23,7 @@ It is a short description of the website
 ---
 
 ## Local Weather
-On this page I have used the custom hook `usePosition` to get the client's  latitude and longitute. Once this data was available I used it as query selector to call Weather API with a GET request.
+To get the local weather, I used the user IP as query selector, to call the API.
 
 ![Local Weather](https://raw.github.com/Sirius1402/weather-application/main/front-end/printscreens/localWeather.jpg) 
 
