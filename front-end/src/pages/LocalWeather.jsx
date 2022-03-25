@@ -14,9 +14,7 @@ const LocalWeather = () => {
   }, [latitude, longitude, error]);
 
   const getWeather = async (lat, long) => {
-    const res = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=d2f438b9e782484b96471500212708&q=${lat},${long}&aqi=no`
-    );
+    const res = await fetch(`http://localhost:3003/api/local/${lat}/${long}`);
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);

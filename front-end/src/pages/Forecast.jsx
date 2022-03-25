@@ -26,9 +26,7 @@ const Forecast = () => {
   // console.log(yourCity)
 
   const getLocations = async (city) => {
-    const res = await fetch(
-      `https://api.weatherapi.com/v1/search.json?key=d2f438b9e782484b96471500212708&q=${city}`
-    );
+    const res = await fetch(`http://localhost:3003/api/location/${city}`);
     if (res.status === 200) {
       const locations = await res.json();
       setLocations(locations);
@@ -37,9 +35,7 @@ const Forecast = () => {
   // console.log(locations)
 
   const getForecast = async (city) => {
-    const res = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=d2f438b9e782484b96471500212708&q=${city}&days=7&aqi=no&alerts=yes`
-    );
+    const res = await fetch(`http://localhost:3003/api/forecast/${city}`);
     if (res.status === 200) {
       const forecast = await res.json();
       setForecast(forecast);

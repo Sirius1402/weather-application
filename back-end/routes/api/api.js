@@ -3,12 +3,12 @@ require("dotenv").config();
 const fetch = require("isomorphic-fetch");
 
 const router = express.Router();
-const key = process.env.A_KEY;
+const key = "d2f438b9e782484b96471500212708";
 
-router.get("/local/:lat,long", async (req, res) => {
-  const position = req.params["lat,long"].split(",");
-  const lat = position[0];
-  const long = position[1];
+router.get("/local/:lat/:long", async (req, res) => {
+  console.log("params: ", req.params)
+  const lat = req.params.lat;
+  const long = req.params.long
   const local_url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${lat},${long}&aqi=no`;
   const local_response = await fetch(local_url);
   const local_data = await local_response.json();

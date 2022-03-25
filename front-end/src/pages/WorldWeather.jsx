@@ -22,9 +22,7 @@ const WorldWeather = () => {
   // console.log(yourCity)
 
   const getLocations = async (city) => {
-    const res = await fetch(
-      `https://api.weatherapi.com/v1/search.json?key=d2f438b9e782484b96471500212708&q=${city}`
-    );
+    const res = await fetch(`http://localhost:3003/api/location/${city}`);
     if (res.status === 200) {
       const locations = await res.json();
       setLocations(locations);
@@ -35,9 +33,7 @@ const WorldWeather = () => {
   // console.log(locations)
 
   const getWeather = async (city) => {
-    const res = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=d2f438b9e782484b96471500212708&q=${city}&aqi=no`
-    );
+    const res = await fetch(`http://localhost:3003/api/world/${city}`);
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);
@@ -63,10 +59,7 @@ const WorldWeather = () => {
         searchedCity={searchedCity}
         handleClick={handleClick}
       />
-      {weather && 
-        <Weather 
-          weather={weather} 
-      />}
+      {weather && <Weather weather={weather} />}
     </section>
   );
 };
