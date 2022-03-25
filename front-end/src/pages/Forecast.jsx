@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Input from "../components/forecast components/Input";
 import DailyForecast from "../components/forecast components/DailyForecast";
 import HourlyForecast from "../components/forecast components/HourlyForecast";
+import Loader from "../components/Loader";
 
-const Forecast = () => {
+const Forecast = ({ isLoading, setIsLoading }) => {
   const [searchedCity, setSearchedCity] = useState("");
   const [locations, setLocations] = useState([]);
   const [yourCity, setYourCity] = useState("");
@@ -23,7 +24,9 @@ const Forecast = () => {
     }
   }, [locations]);
 
-  // console.log(yourCity)
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   const getLocations = async (city) => {
     const res = await fetch(`http://localhost:3003/api/location/${city}`);
@@ -32,18 +35,18 @@ const Forecast = () => {
       setLocations(locations);
     }
   };
-  // console.log(locations)
 
   const getForecast = async (city) => {
     const res = await fetch(`http://localhost:3003/api/forecast/${city}`);
     if (res.status === 200) {
       const forecast = await res.json();
       setForecast(forecast);
+      setIsLoading(false);
     } else {
       alert("Wrong request!");
     }
   };
-  // console.log(forecast)
+
   const getHourlyForecast = (date) => {
     for (let i = 0; i < forecast.forecast.forecastday.length; i++) {
       if (date === forecast.forecast.forecastday[i].date) {
@@ -53,7 +56,9 @@ const Forecast = () => {
     return hourlyForecast;
   };
 
-  // console.log(hourlyForecast)
+  const displayLoader = () => {
+    setIsLoading(true);
+  };
 
   const handleChange = (e) => {
     setSearchedCity(e.target.value);
@@ -61,6 +66,7 @@ const Forecast = () => {
   };
 
   const handleClick = () => {
+    displayLoader();
     getForecast(yourCity);
   };
 
@@ -74,7 +80,9 @@ const Forecast = () => {
     setShowHourlyForecast(false);
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <section>
       <Input
         handleChange={handleChange}

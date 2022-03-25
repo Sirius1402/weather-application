@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { usePosition } from "use-position";
+import Loader from "../components/Loader";
 
-const LocalWeather = () => {
+const LocalWeather = ({ isLoading, setIsLoading }) => {
   const [weather, setWeather] = useState();
-  const { latitude, longitude, error } = usePosition();
+  const [ip, setIp] = useState("");
 
   useEffect(() => {
-    if (error) {
-      alert("Location not available!");
-    } else {
-      getWeather(latitude, longitude);
-    }
-  }, [latitude, longitude, error]);
+    getIp();
+    getWeather(ip);
+  }, [ip]);
 
-  const getWeather = async (lat, long) => {
-    const res = await fetch(`http://localhost:3003/api/local/${lat}/${long}`);
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
+  const getWeather = async (ip) => {
+    const res = await fetch(`http://localhost:3003/api/local/${ip}`);
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);
+      setIsLoading(false);
     } else {
       return;
     }
   };
-  // console.log(weather)
 
-  return (
+  const getIp = async () => {
+    const res = await fetch("http://localhost:3003/api/ip");
+    if (res.status === 200) {
+      const ip = await res.json();
+      setIp(ip.ip);
+    }
+  };
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <section>
       <div className="my-card">
         <h1 data-testid="weather">Local weather</h1>

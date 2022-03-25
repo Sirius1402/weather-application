@@ -6,8 +6,11 @@ import LocalWeather from "./pages/LocalWeather";
 import Forecast from "./pages/Forecast";
 import "./App.css";
 import { HashRouter, Switch, Route } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <HashRouter>
       <div className="App">
@@ -16,9 +19,21 @@ function App() {
         </div>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/local-weather" component={LocalWeather} />
-          <Route exact path="/forecast" component={Forecast} />
-          <Route exact path="/world-weather" component={WorldWeather} />
+          <Route exact path="/local-weather">
+            <LocalWeather 
+              isLoading={isLoading} 
+              setIsLoading={setIsLoading} />
+          </Route>
+          <Route exact path="/forecast">
+            <Forecast 
+              isLoading={isLoading}  
+              setIsLoading={setIsLoading} />
+          </Route>
+          <Route exact path="/world-weather">
+            <WorldWeather 
+              isLoading={isLoading} 
+              setIsLoading={setIsLoading} />
+          </Route>
         </Switch>
       </div>
       <div data-testid="footer">

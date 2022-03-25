@@ -126,6 +126,16 @@ footer p {
   color: white;
 }
 
+.load {
+  margin: auto;
+}
+
+.loading {
+  width: 200px;
+  margin: auto;
+  display: block;
+}
+
 @media all and (min-width: 401px) {
   .my-btn {
     margin-top: 60px;
@@ -236,4 +246,6 @@ footer p {
     color: white;
     padding: 0 1rem;
   }
+
+  
 }
