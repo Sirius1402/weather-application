@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logo from "../image.svg"
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -18,6 +19,7 @@ const StyledLink = styled(Link)`
 const Navbar = () => {
   return (
     <nav>
+      <div className="div-nav">
       <ul className="navbar">
         <li className="nav-li">
           <StyledLink to="/" replace>
@@ -40,6 +42,10 @@ const Navbar = () => {
           </StyledLink>
         </li>
       </ul>
+      </div>
+      <div className="logo">
+        <img src={logo} alt="logo" />
+      </div>
     </nav>
   );
 };
