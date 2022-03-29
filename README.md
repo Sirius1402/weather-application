@@ -10,7 +10,7 @@ For testing the application I have used React Testing Library and Mock Service W
 
 After you clone the project, to start it, follow the instructions:
 - To start the backend, write in the terminal: `cd back-end`, `npm install`, `node server`
-- To start the front end: open in a new window "front-end" folder and write in the terminal:`npm install` and `npm start`. To start the tests, run `npm test` in the terminal.
+- To start the front end: open in a new window "front-end" folder and write in the terminal:`npm install` and `npm start`.
 
 The website has four pages: Home, Local Weather, Forecast and World-Wide Weather.
 
