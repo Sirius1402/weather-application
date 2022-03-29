@@ -82,6 +82,12 @@ section {
 .ww-card {
   margin-top: 120px;
 }
+
+.home-list {
+  list-style: none;
+  text-align: center;
+}
+
 .ww-button {
   padding: 0.7rem;
   border-radius: 5px;

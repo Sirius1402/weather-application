@@ -12,6 +12,17 @@ const Home = () => {
           weather.
         </p>
         <p>Most important, it is our weather.</p>
+        <p>
+          Here you can get:
+          <ul className="home-list">
+            <li>- local weather based on your location;</li>
+            <li>
+               - 3 days forecasts for any location and hourly forescasts for each
+              day;
+            </li>
+            <li>- and present weather for any location.</li>
+          </ul>
+        </p>
         <p>Thank you very much, because you are here and please enjoy it!</p>
       </div>
     </section>
