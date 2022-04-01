@@ -1,6 +1,6 @@
 # Weather Application - My Weatther
 
-This is a weather website made with ReactJS and powered by [WeatherAPI.com](https://www.weatherapi.com/). It provides data for local weather, daily and hourly forecast and world-wide weather.
+This is a weather website made with ReactJS and powered by [WeatherAPI.com](https://www.weatherapi.com/). It provides data for local weather, daily and hourly forecast and world-wide weather. The website is ready to be deployed.
 
 It is served by an ExpressJS backend build by me.
 
