@@ -5,7 +5,6 @@ function Loader() {
   return (
     <div className='load'>
         <img src={loader} className='loading' alt="Loading"/>
-        <p>Loadind...</p>
     </div>
   )
 }
