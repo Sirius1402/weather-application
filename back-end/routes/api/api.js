@@ -3,8 +3,8 @@ require("dotenv").config();
 const fetch = require("isomorphic-fetch");
 
 const router = express.Router();
-const weatherKey = process.env.W_KEY;
-const ipKey =  process.env.IP_KEY
+const weatherKey = "36fd80f87b924f1dbf4204838220704";
+const ipKey =  "fa72b0de82a9429086667fbdfdd55f78"
 
 router.get("/ip", async (req, res) => {
   const ip_url = `https://api.ipgeolocation.io/ipgeo?apiKey=${ipKey}`
