@@ -48,7 +48,8 @@ nav {
 }
 section {
   flex: 1 1 0%;
-  width: 95vw;
+  width: 98vw;
+  margin: auto;
   margin-top: 50px;
 }
 

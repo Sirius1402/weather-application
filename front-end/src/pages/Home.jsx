@@ -13,7 +13,7 @@ const Home = () => {
         </p>
         <p>Most important, it is our weather.</p>
         <p>
-          Here you can get:
+          Here you can get:</p>
           <ul className="home-list">
             <li>- local weather based on your location;</li>
             <li>
@@ -22,7 +22,7 @@ const Home = () => {
             </li>
             <li>- and present weather for any location.</li>
           </ul>
-        </p>
+        
         <p>Thank you very much, because you are here and please enjoy it!</p>
       </div>
     </section>

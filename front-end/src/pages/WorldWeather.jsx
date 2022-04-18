@@ -12,10 +12,10 @@ const WorldWeather = ({ isLoading, setIsLoading }) => {
   useEffect(() => {
     for (let i = 0; i < locations.length; i++) {
       if (
-        locations[i].name.split(",")[0].toLowerCase() ===
+        locations[i].name.toLowerCase() ===
         searchedCity.toLowerCase()
       ) {
-        setYourCity(locations[i].name.split(",")[0]);
+        setYourCity(locations[i].name);
       }
     }
   }, [locations]);
