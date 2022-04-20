@@ -13,9 +13,8 @@ router.get("/ip", async (req, res) => {
   res.json(ip_data)
 })
 
-router.get("/local/:ip", async (req, res) => {
-  const ip = req.params.ip
-  const local_url = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=${ip}&aqi=no`;
+router.get("/local/ip", async (req, res) => {
+  const local_url = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=auto:ip&aqi=no`;
   const local_response = await fetch(local_url);
   const local_data = await local_response.json();
   res.json(local_data);

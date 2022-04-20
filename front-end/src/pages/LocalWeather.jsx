@@ -3,33 +3,25 @@ import Loader from "../components/Loader";
 
 const LocalWeather = ({ isLoading, setIsLoading }) => {
   const [weather, setWeather] = useState();
-  const [ip, setIp] = useState("");
 
   useEffect(() => {
-    getIp();
-    getWeather(ip);
-  }, [ip]);
+    getWeather();
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
   }, []);
 
-  const getWeather = async (ip) => {
-    const res = await fetch(`http://localhost:3003/api/local/${ip}`);
+  const getWeather = async () => {
+    const res = await fetch(
+      "http://localhost:3003/api/local/ip"
+    );
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);
       setIsLoading(false);
     } else {
       return;
-    }
-  };
-
-  const getIp = async () => {
-    const res = await fetch("http://localhost:3003/api/ip");
-    if (res.status === 200) {
-      const ip = await res.json();
-      setIp(ip.ip);
     }
   };
 
@@ -43,7 +35,8 @@ const LocalWeather = ({ isLoading, setIsLoading }) => {
         {weather && (
           <>
             <h4 className="my-card-title">
-              Location: {weather.location.name}, {weather.location.country}
+              Location: {weather.location.name},{" "}
+              {weather.location.country}
             </h4>
             <div className="my-card-body">
               <p>
@@ -55,18 +48,36 @@ const LocalWeather = ({ isLoading, setIsLoading }) => {
                 />
               </p>
               <p>
-                Temperature: {weather.current.temp_c} {"\u2103"}
+                Temperature: {weather.current.temp_c}{" "}
+                {"\u2103"}
               </p>
               <p>
-                Feels like: {weather.current.feelslike_c} {"\u2103"}
+                Feels like: {weather.current.feelslike_c}{" "}
+                {"\u2103"}
               </p>
-              <p>Air pressure: {weather.current.pressure_mb} mb</p>
-              <p>Wind direction: {weather.current.wind_dir}</p>
-              <p>Wind speed: {weather.current.wind_kph} km/h</p>
-              <p>Gusting speed: {weather.current.gust_kph} km/h</p>
+              <p>
+                Air pressure: {weather.current.pressure_mb}{" "}
+                mb
+              </p>
+              <p>
+                Wind direction: {weather.current.wind_dir}
+              </p>
+              <p>
+                Wind speed: {weather.current.wind_kph} km/h
+              </p>
+              <p>
+                Gusting speed: {weather.current.gust_kph}{" "}
+                km/h
+              </p>
               <p>Visibility: {weather.current.vis_km} km</p>
-              <p>Precipitations: {weather.current.precip_mm} mm</p>
-              <p>Relative Humidity: {weather.current.humidity} %</p>
+              <p>
+                Precipitations: {weather.current.precip_mm}{" "}
+                mm
+              </p>
+              <p>
+                Relative Humidity:{" "}
+                {weather.current.humidity} %
+              </p>
               <p>UV index: {weather.current.uv}</p>
             </div>
           </>
