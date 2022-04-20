@@ -4,14 +4,7 @@ const fetch = require("isomorphic-fetch");
 
 const router = express.Router();
 const weatherKey = "36fd80f87b924f1dbf4204838220704";
-const ipKey =  "fa72b0de82a9429086667fbdfdd55f78"
 
-router.get("/ip", async (req, res) => {
-  const ip_url = `https://api.ipgeolocation.io/ipgeo?apiKey=${ipKey}`
-  const ip_response = await fetch(ip_url)
-  const ip_data = await ip_response.json()
-  res.json(ip_data)
-})
 
 router.get("/local/ip", async (req, res) => {
   const local_url = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=auto:ip&aqi=no`;
