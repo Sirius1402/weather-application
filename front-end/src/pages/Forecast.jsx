@@ -34,7 +34,6 @@ const Forecast = ({ isLoading, setIsLoading }) => {
       const locations = await res.json();
       setLocations(locations);
     }
-    console.log("locatii: ", locations)
   };
 
   const getForecast = async (city) => {

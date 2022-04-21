@@ -18,6 +18,7 @@ import CookieConsent, {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+
   return (
     <HashRouter>
       <div className="App">
