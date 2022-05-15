@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import Loader from "../components/Loader";
+import { LoaderVisible } from "../context/LoaderVisible";
 
-const LocalWeather = ({ isLoading, setIsLoading }) => {
+const LocalWeather = () => {
   const [weather, setWeather] = useState();
+  const { isLoading, setIsLoading } =
+    useContext(LoaderVisible);
 
   useEffect(() => {
     getWeather();

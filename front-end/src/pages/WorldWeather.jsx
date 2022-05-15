@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import Input from "../components/ww components/Input";
 import Weather from "../components/ww components/Weather";
 import Loader from "../components/Loader";
+import { LoaderVisible } from "../context/LoaderVisible";
 
-const WorldWeather = ({ isLoading, setIsLoading }) => {
+const WorldWeather = () => {
   const [searchedCity, setSearchedCity] = useState("");
   const [locations, setLocations] = useState([]);
   const [yourCity, setYourCity] = useState("");
   const [weather, setWeather] = useState();
+  const { isLoading, setIsLoading } =
+    useContext(LoaderVisible);
 
   useEffect(() => {
     for (let i = 0; i < locations.length; i++) {
@@ -25,7 +32,9 @@ const WorldWeather = ({ isLoading, setIsLoading }) => {
   }, []);
 
   const getLocations = async (city) => {
-    const res = await fetch(`http://localhost:3003/api/location/${city}`);
+    const res = await fetch(
+      `http://localhost:3003/api/location/${city}`
+    );
     if (res.status === 200) {
       const locations = await res.json();
       setLocations(locations);
@@ -33,7 +42,9 @@ const WorldWeather = ({ isLoading, setIsLoading }) => {
   };
 
   const getWeather = async (city) => {
-    const res = await fetch(`http://localhost:3003/api/world/${city}`);
+    const res = await fetch(
+      `http://localhost:3003/api/world/${city}`
+    );
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);

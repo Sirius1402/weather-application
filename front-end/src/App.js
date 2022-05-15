@@ -1,63 +1,34 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WorldWeather from "./pages/WorldWeather";
-import Home from "./pages/Home";
-import LocalWeather from "./pages/LocalWeather";
-import Forecast from "./pages/Forecast";
 import "./App.css";
-import {
-  HashRouter,
-  Switch,
-  Route,
-} from "react-router-dom";
-import { useState } from "react";
 import CookieConsent, {
   Cookies,
 } from "react-cookie-consent";
+import LoaderProvider from "./context/LoaderVisible";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-
   return (
-    <HashRouter>
-      <div className="App">
-        <div data-testid="navbar">
+    <>
+      <LoaderProvider>
+        <div className="App">
           <Navbar />
+          <Outlet />
         </div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/local-weather">
-            <LocalWeather
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            />
-          </Route>
-          <Route exact path="/forecast">
-            <Forecast
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            />
-          </Route>
-          <Route exact path="/world-weather">
-            <WorldWeather
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            />
-          </Route>
-        </Switch>
-      </div>
+      </LoaderProvider>
+
       <div data-testid="footer">
         <Footer />
       </div>
-      <CookieConsent 
-      enableDeclineButton
-      flipButtons
-      debug={true}>
+      <CookieConsent
+        enableDeclineButton
+        flipButtons
+        debug={true}
+      >
         This website uses cookies to enhance the user
         experience.
       </CookieConsent>
-    </HashRouter>
+    </>
   );
 }
 
