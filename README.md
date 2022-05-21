@@ -6,8 +6,6 @@ It is served by an ExpressJS backend build by me.
 
 The website is responsive at 401 pixels, break point. 
 
-For testing the application I have used React Testing Library and Mock Service Worker, to mock API calls.
-
 After you clone the project, to start it, follow the instructions:
 - To start the backend, write in the terminal: `cd back-end`, `npm install`, `node server`
 - To start the front end: open in a new window "front-end" folder and write in the terminal:`npm install` and `npm start`.
