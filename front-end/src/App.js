@@ -2,9 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
-import CookieConsent, {
-  Cookies,
-} from "react-cookie-consent";
+import CookieConsent from "react-cookie-consent";
 import LoaderProvider from "./context/LoaderVisible";
 
 function App() {
@@ -20,13 +18,8 @@ function App() {
       <div data-testid="footer">
         <Footer />
       </div>
-      <CookieConsent
-        enableDeclineButton
-        flipButtons
-        debug={true}
-      >
-        This website uses cookies to enhance the user
-        experience.
+      <CookieConsent enableDeclineButton flipButtons debug={true}>
+        This website uses cookies to enhance the user experience.
       </CookieConsent>
     </>
   );

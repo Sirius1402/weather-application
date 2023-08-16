@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useContext,
-} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Input from "../components/forecast components/Input";
 import DailyForecast from "../components/forecast components/DailyForecast";
 import HourlyForecast from "../components/forecast components/HourlyForecast";
@@ -11,46 +7,18 @@ import { LoaderVisible } from "../context/LoaderVisible";
 
 const Forecast = () => {
   const [searchedCity, setSearchedCity] = useState("");
-  const [locations, setLocations] = useState([]);
-  const [yourCity, setYourCity] = useState("");
   const [forecast, setForecast] = useState();
-  const [showDailyForecast, setShowDailyForecast] =
-    useState(true);
+  const [showDailyForecast, setShowDailyForecast] = useState(true);
   const [hourlyForecast, setHourlyForecast] = useState([]);
-  const [showHourlyForecast, setShowHourlyForecast] =
-    useState(false);
-  const { isLoading, setIsLoading } =
-    useContext(LoaderVisible);
-
-  useEffect(() => {
-    for (let i = 0; i < locations.length; i++) {
-      if (
-        locations[i].name.toLowerCase() ===
-        searchedCity.toLowerCase()
-      ) {
-        setYourCity(locations[i].name);
-      }
-    }
-  }, [locations]);
+  const [showHourlyForecast, setShowHourlyForecast] = useState(false);
+  const { isLoading, setIsLoading } = useContext(LoaderVisible);
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
 
-  const getLocations = async (city) => {
-    const res = await fetch(
-      `http://localhost:3003/api/location/${city}`
-    );
-    if (res.status === 200) {
-      const locations = await res.json();
-      setLocations(locations);
-    }
-  };
-
   const getForecast = async (city) => {
-    const res = await fetch(
-      `http://localhost:3003/api/forecast/${city}`
-    );
+    const res = await fetch(`http://localhost:3003/api/forecast/${city}`);
     if (res.status === 200) {
       const forecast = await res.json();
       setForecast(forecast);
@@ -61,15 +29,9 @@ const Forecast = () => {
   };
 
   const getHourlyForecast = (date) => {
-    for (
-      let i = 0;
-      i < forecast.forecast.forecastday.length;
-      i++
-    ) {
+    for (let i = 0; i < forecast.forecast.forecastday.length; i++) {
       if (date === forecast.forecast.forecastday[i].date) {
-        setHourlyForecast(
-          forecast.forecast.forecastday[i].hour
-        );
+        setHourlyForecast(forecast.forecast.forecastday[i].hour);
       }
     }
     return hourlyForecast;
@@ -81,12 +43,11 @@ const Forecast = () => {
 
   const handleChange = (e) => {
     setSearchedCity(e.target.value);
-    getLocations(e.target.value);
   };
 
   const handleClick = () => {
     displayLoader();
-    getForecast(yourCity);
+    getForecast(searchedCity);
   };
 
   const handleForecast = () => {

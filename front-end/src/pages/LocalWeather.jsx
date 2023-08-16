@@ -31,6 +31,7 @@ const LocalWeather = () => {
       return;
     }
   };
+  console.log("Weather :", weather)
 
   return isLoading ? (
     <Loader />
