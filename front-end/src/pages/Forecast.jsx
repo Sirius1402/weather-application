@@ -4,6 +4,7 @@ import DailyForecast from "../components/forecast components/DailyForecast";
 import HourlyForecast from "../components/forecast components/HourlyForecast";
 import Loader from "../components/Loader";
 import { LoaderVisible } from "../context/LoaderVisible";
+import { regEX } from "../utils";
 
 const Forecast = () => {
   const [searchedCity, setSearchedCity] = useState("");
@@ -12,6 +13,11 @@ const Forecast = () => {
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [showHourlyForecast, setShowHourlyForecast] = useState(false);
   const { isLoading, setIsLoading } = useContext(LoaderVisible);
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    valiadateInput(searchedCity);
+  }, [searchedCity]);
 
   useEffect(() => {
     setIsLoading(false);
@@ -37,6 +43,11 @@ const Forecast = () => {
     return hourlyForecast;
   };
 
+  const valiadateInput = (text) => {
+    if (regEX.test(text)) setDisabled(false);
+    else setDisabled(true);
+  };
+
   const displayLoader = () => {
     setIsLoading(true);
   };
@@ -49,6 +60,14 @@ const Forecast = () => {
     displayLoader();
     getForecast(searchedCity);
   };
+
+  // const handleEnter = (e) => {
+  //   if(e.key === "Enter" && valiadateInput(searchedCity)){
+  //     getForecast(searchedCity)
+  //   } else if (e.key === "Enter" && valiadateInput(searchedCity) === false){
+  //     e.preventDefault()
+  //   }
+  // }
 
   const handleForecast = () => {
     setShowDailyForecast(false);
@@ -68,6 +87,7 @@ const Forecast = () => {
         handleChange={handleChange}
         searchedCity={searchedCity}
         handleClick={handleClick}
+        disabled={disabled}
       />
       {forecast && (
         <DailyForecast

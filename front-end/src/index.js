@@ -3,42 +3,27 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  HashRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LocalWeather from "./pages/LocalWeather";
 import Forecast from "./pages/Forecast";
 import WorldWeather from "./pages/WorldWeather";
+import LoaderProvider from "./context/LoaderVisible";
 
-ReactDOM.createRoot(
-  document.getElementById("root")
-)
-.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HashRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route
-            path="local-weather"
-            exact
-            element={<LocalWeather />}
-          />
-          <Route
-            path="forecast"
-            exact
-            element={<Forecast />}
-          />
-          <Route
-            path="world-weather"
-            exact
-            element={<WorldWeather />}
-          />
-        </Route>
-      </Routes>
+      <LoaderProvider>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="local-weather" exact element={<LocalWeather />} />
+            <Route path="forecast" exact element={<Forecast />} />
+            <Route path="world-weather" exact element={<WorldWeather />} />
+          </Route>
+        </Routes>
+        /
+      </LoaderProvider>
     </HashRouter>
   </React.StrictMode>
 );

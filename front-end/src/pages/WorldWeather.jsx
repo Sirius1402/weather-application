@@ -3,15 +3,21 @@ import Input from "../components/ww components/Input";
 import Weather from "../components/ww components/Weather";
 import Loader from "../components/Loader";
 import { LoaderVisible } from "../context/LoaderVisible";
+import { regEX } from "../utils";
 
 const WorldWeather = () => {
   const [searchedCity, setSearchedCity] = useState("");
   const [weather, setWeather] = useState();
   const { isLoading, setIsLoading } = useContext(LoaderVisible);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    valiadateInput(searchedCity);
+  }, [searchedCity]);
 
   const getWeather = async (city) => {
     const res = await fetch(`http://localhost:3003/api/world/${city}`);
@@ -22,6 +28,11 @@ const WorldWeather = () => {
     } else {
       alert("Wrong request!");
     }
+  };
+
+  const valiadateInput = (text) => {
+    if (regEX.test(text)) setDisabled(false);
+    else setDisabled(true);
   };
 
   const handleChange = (e) => {
@@ -45,6 +56,7 @@ const WorldWeather = () => {
         handleChange={handleChange}
         searchedCity={searchedCity}
         handleClick={handleClick}
+        disabled={disabled}
       />
       {weather && <Weather weather={weather} />}
     </section>

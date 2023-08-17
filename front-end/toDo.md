@@ -1,4 +1,7 @@
 - [ ] Custom Hooks
-- [ ] Input validation
+- [x] Input validation
 - [ ] Spread objects
 - [ ] CSS
+- [ ] Cookie consent
+- [ ] Enter button
+- [ ] Permision to use location

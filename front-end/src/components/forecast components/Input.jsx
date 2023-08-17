@@ -1,7 +1,6 @@
 import React from "react";
 
-
-function Input({ handleChange, searchedCity, handleClick }) {
+function Input({ handleChange, searchedCity, handleClick, disabled, handleEnter }) {
   return (
     <div className="ww-card">
       <h1 data-testid="forecast">Forecast</h1>
@@ -18,6 +17,7 @@ function Input({ handleChange, searchedCity, handleClick }) {
         data-testid="btn-fcast"
         onClick={handleClick}
         className="ww-button"
+        disabled={disabled}
       >
         Show forecast
       </button>
