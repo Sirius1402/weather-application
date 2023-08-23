@@ -11,7 +11,7 @@ function Input({ handleChange, searchedCity, handleClick, disabled, handleEnter 
         placeholder="Location Name"
         type="text"
         value={searchedCity}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <button
         data-testid="btn-fcast"

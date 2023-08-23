@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
+
 import Input from "../components/forecast components/Input";
 import DailyForecast from "../components/forecast components/DailyForecast";
 import HourlyForecast from "../components/forecast components/HourlyForecast";
 import Loader from "../components/Loader";
 import { LoaderVisible } from "../context/LoaderVisible";
 import { regEX } from "../utils";
+import { useInput } from "../hooks/useInput";
 
 const Forecast = () => {
-  const [searchedCity, setSearchedCity] = useState("");
+  const [searchedCity, resetCity] = useInput("");
   const [forecast, setForecast] = useState();
   const [showDailyForecast, setShowDailyForecast] = useState(true);
   const [hourlyForecast, setHourlyForecast] = useState([]);
@@ -16,8 +18,8 @@ const Forecast = () => {
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    valiadateInput(searchedCity);
-  }, [searchedCity]);
+    valiadateInput(searchedCity.value);
+  }, [searchedCity.value]);
 
   useEffect(() => {
     setIsLoading(false);
@@ -53,21 +55,14 @@ const Forecast = () => {
   };
 
   const handleChange = (e) => {
-    setSearchedCity(e.target.value);
+    searchedCity.onChange(e)
   };
 
   const handleClick = () => {
     displayLoader();
-    getForecast(searchedCity);
+    getForecast(searchedCity.value)
+    resetCity()
   };
-
-  // const handleEnter = (e) => {
-  //   if(e.key === "Enter" && valiadateInput(searchedCity)){
-  //     getForecast(searchedCity)
-  //   } else if (e.key === "Enter" && valiadateInput(searchedCity) === false){
-  //     e.preventDefault()
-  //   }
-  // }
 
   const handleForecast = () => {
     setShowDailyForecast(false);
@@ -85,9 +80,10 @@ const Forecast = () => {
     <section>
       <Input
         handleChange={handleChange}
-        searchedCity={searchedCity}
+        searchedCity={searchedCity.value}
         handleClick={handleClick}
         disabled={disabled}
+
       />
       {forecast && (
         <DailyForecast

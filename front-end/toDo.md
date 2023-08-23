@@ -1,7 +1,6 @@
-- [ ] Custom Hooks
+- [x] Custom Hook - useInput
 - [x] Input validation
 - [ ] Spread objects
 - [ ] CSS
 - [ ] Cookie consent
-- [ ] Enter button
 - [ ] Permision to use location

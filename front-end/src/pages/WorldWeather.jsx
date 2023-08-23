@@ -4,9 +4,10 @@ import Weather from "../components/ww components/Weather";
 import Loader from "../components/Loader";
 import { LoaderVisible } from "../context/LoaderVisible";
 import { regEX } from "../utils";
+import { useInput } from "../hooks/useInput";
 
 const WorldWeather = () => {
-  const [searchedCity, setSearchedCity] = useState("");
+  const [searchedCity, resetCity] = useInput("");
   const [weather, setWeather] = useState();
   const { isLoading, setIsLoading } = useContext(LoaderVisible);
   const [disabled, setDisabled] = useState(false);
@@ -16,8 +17,8 @@ const WorldWeather = () => {
   }, []);
 
   useEffect(() => {
-    valiadateInput(searchedCity);
-  }, [searchedCity]);
+    valiadateInput(searchedCity.value);
+  }, [searchedCity.value]);
 
   const getWeather = async (city) => {
     const res = await fetch(`http://localhost:3003/api/world/${city}`);
@@ -36,7 +37,7 @@ const WorldWeather = () => {
   };
 
   const handleChange = (e) => {
-    setSearchedCity(e.target.value);
+    searchedCity.onChange(e);
   };
 
   const displayLoader = () => {
@@ -45,7 +46,8 @@ const WorldWeather = () => {
 
   const handleClick = () => {
     displayLoader();
-    getWeather(searchedCity);
+    getWeather(searchedCity.value);
+    resetCity()
   };
 
   return isLoading ? (
@@ -54,7 +56,7 @@ const WorldWeather = () => {
     <section>
       <Input
         handleChange={handleChange}
-        searchedCity={searchedCity}
+        searchedCity={searchedCity.value}
         handleClick={handleClick}
         disabled={disabled}
       />
