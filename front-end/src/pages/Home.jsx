@@ -1,6 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCoordinates, position } from "../redux/slices/coordinatesSlice";
+import { loader, showLoader } from "../redux/slices/loaderSlice";
+import { LoaderVisible } from "../context/LoaderVisible";
 
 const Home = () => {
+  const dispatch = useDispatch;
+
+  useEffect (() => {
+    dispatch(getCoordinates)
+  },[])
+
+ const pos = useSelector(position)
+
+  console.log("position: ", pos)
+
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         dispatch(setLatitude(position.coords.latitude));
+  //         dispatch(setLongitude(position.coords.longitude));
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //       },
+  //       { enableHighAccuracy: true, maximumAge: 300000 }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //   }
+  // }, []);
+
   return (
     <section>
       <div className="ww-card">
@@ -12,17 +43,16 @@ const Home = () => {
           weather.
         </p>
         <p>Most important, it is our weather.</p>
-        <p>
-          Here you can get:</p>
-          <ul className="home-list">
-            <li>- local weather based on your location;</li>
-            <li>
-               - 3 days forecasts for any location and hourly forescasts for each
-              day;
-            </li>
-            <li>- and present weather for any location.</li>
-          </ul>
-        
+        <p>Here you can get:</p>
+        <ul className="home-list">
+          <li>- local weather based on your location;</li>
+          <li>
+            - 3 days forecasts for any location and hourly forescasts for each
+            day;
+          </li>
+          <li>- and present weather for any location.</li>
+        </ul>
+
         <p>Thank you very much, because you are here and please enjoy it!</p>
       </div>
     </section>

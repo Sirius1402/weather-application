@@ -4,12 +4,10 @@ export const LoaderVisible = createContext();
 
 const LoaderProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [lat, setLat] = useState();
-  const [long, setLong] = useState();
-
+  
   return (
     <LoaderVisible.Provider
-      value={{ isLoading, setIsLoading, lat, setLat, long, setLong }}
+      value={{ isLoading, setIsLoading}}
     >
       {children}
     </LoaderVisible.Provider>
