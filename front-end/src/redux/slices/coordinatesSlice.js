@@ -1,66 +1,25 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState ={
-  position: {},
-  status: "idle",
-  erorror: ""
-}
+export const coordinatesSlice = createSlice({
+    name: "coordinates",
+    initialState: {
+        latitude: "",
+        longitude: ""
+    },
+    reducers: {
+        setLatitude: (state, action) => {
+            state.latitude = action.payload
+        },
+        setLongitude: (state, action) => {
+            state.longitude = action.payload
+        }
+    }
+})
 
-const getPosition = (options) => {
-  return new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject, options)
-  );
-};
+export const { setLatitude, setLongitude} = coordinatesSlice.actions
 
-export const getCoordinates = createAsyncThunk(
-  "coordinates/getCoordinates",
-  async () => {
-    let options = {
-      enableHighAccuracy: true,
-    };
+export const latitude= state => state.coordinates.latitude
 
-    const position = await getPosition(options);
-    return position
-  }
-);
+export const longitude = state => state.coordinates.longitude
 
-export const coordinatesSlice= createSlice({
-  name: "position",
-  initialState,
-  reducers:{
-
-  },
-  extraReducers(builder) {
-    builder
-      .addCase(getCoordinates.pending, (state, action) =>{
-        state.status = "loadind"
-      })
-      .addCase(getCoordinates.fulfilled, (state, action) => {
-        state.status ="succeeded"
-        state.position = {...state.position, ...action.payload}
-      })
-      .addCase(getPosition.rejected, (state, action) => {
-        state.status = "failed"
-        state.error = action.error.message
-      })
-    // [getCoordinates.pending]: (state, action) => {
-    //   state.loading = true
-    // },
-    // [getCoordinates.fulfilled]: (state, action) => {
-    //   state.loading = false
-    //   console.log("payload: ",action.payload)
-    //   state.latitude = action.payload.lat
-    //   state.longitude = action.payload.long
-    // },
-    // [getCoordinates.rejected]: (state, action) => {
-    //   state.loading = false
-    // }
-  },
-});
-
-
-
-export const position = (state) => state.position.position;
-
-
-export default coordinatesSlice.reducer;
+export default coordinatesSlice.reducer

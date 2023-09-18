@@ -3,4 +3,4 @@
 - [ ] Spread objects
 - [ ] CSS
 - [ ] Cookie consent
-- [ ] Permision to use location
+- [x] Permision to use location

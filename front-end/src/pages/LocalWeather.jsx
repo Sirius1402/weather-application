@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Loader from "../components/Loader";
 // import { loader, showLoader } from "../redux/slices/loaderSlice";
 import { LoaderVisible } from "../context/LoaderVisible";
+import { latitude, longitude } from "../redux/slices/coordinatesSlice";
 
 const LocalWeather = () => {
-  const dispatch = useDispatch()
   const [weather, setWeather] = useState();
-  const { isLoading, setIsLoading, lat, long } = useContext(LoaderVisible);
+  const { isLoading, setIsLoading } = useContext(LoaderVisible);
+  const lat = useSelector(latitude)
+  const long = useSelector(longitude)
 
-  // useEffect(() => {
-  //   getWeather(lat, long);
-  // }, [lat, long]);
+  useEffect(() => {
+    getWeather(lat, long);
+  }, [lat, long]);
 
   useEffect(() => {
     setIsLoading(false);

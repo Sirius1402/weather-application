@@ -11,58 +11,38 @@ import {
   REGISTER
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import coordinatesReducer from "./slices/coordinatesSlice"
+import storageSession from 'redux-persist/lib/storage/session'
 import loaderReducer from "./slices/loaderSlice"
-import longitudeReducer from "./slices/longitudeSlice"
-import latitudeReducer from "./slices/latitudeSlice"
+import coordinatesReducer from "./slices/coordinatesSlice"
 
 const rootReducer = combineReducers({
-  position: coordinatesReducer,
-  loader: loaderReducer,
-  longitude: longitudeReducer,
-  latitude: latitudeReducer
+  coordinates: coordinatesReducer,
 });
 
-const persistConfig = {
+const config = {
   key: "root",
   version: 1,
-  storage,
+  storage: storage,
 };
 
-const persistedReducer = persistReducer({
-  persistConfig,
+const persistedReducer = persistReducer(
+  config,
   rootReducer,
-});
+);
 
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
+
+console.log("store: ", store)
 
 const persistor = persistStore(store)
 
 export {persistor}
 export default store
-
-
-
-// export default () => {
-//   let store = configureStore({
-//     reducer: persistedReducer,
-//     middleware: (getDefaultMiddleware) =>
-//       getDefaultMiddleware({
-//         serializableCheck: {
-//           ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//         },
-//       }),
-//   });
-
- 
-//   return{store, persistor}
-// }
-
