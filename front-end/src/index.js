@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import LocalWeather from "./pages/LocalWeather";
 import Forecast from "./pages/Forecast";
 import WorldWeather from "./pages/WorldWeather";
-import Loader from "./components/Loader";
+import LoaderProvider from "./context/LoaderVisible";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
         <HashRouter>
+          <LoaderProvider>
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="world-weather" exact element={<WorldWeather />} />
             </Route>
           </Routes>
+          </LoaderProvider>
           </HashRouter>
         </PersistGate>
       </Provider>

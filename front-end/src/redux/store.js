@@ -13,17 +13,20 @@ import {
 import storage from "redux-persist/lib/storage";
 import coordinatesReducer from "./slices/coordinatesSlice"
 import loaderReducer from "./slices/loaderSlice"
+import longitudeReducer from "./slices/longitudeSlice"
+import latitudeReducer from "./slices/latitudeSlice"
 
 const rootReducer = combineReducers({
   position: coordinatesReducer,
-  loader: loaderReducer
+  loader: loaderReducer,
+  longitude: longitudeReducer,
+  latitude: latitudeReducer
 });
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["position"]
 };
 
 const persistedReducer = persistReducer({

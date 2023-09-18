@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import "./App.css";
 import CookieConsent from "react-cookie-consent";
 
+
 function App() {
   return (
     <>

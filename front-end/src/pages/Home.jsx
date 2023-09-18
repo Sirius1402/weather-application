@@ -1,36 +1,40 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCoordinates, position } from "../redux/slices/coordinatesSlice";
+import { setLatitude } from "../redux/slices/latitudeSlice";
+import {setLongitude} from "../redux/slices/longitudeSlice";
 import { loader, showLoader } from "../redux/slices/loaderSlice";
 import { LoaderVisible } from "../context/LoaderVisible";
 
 const Home = () => {
   const dispatch = useDispatch;
 
-  useEffect (() => {
-    dispatch(getCoordinates)
-  },[])
+//   useEffect (() => {
+//     dispatch(getCoordinates)
+//   },[])
 
- const pos = useSelector(position)
+//  const pos = useSelector(position)
 
-  console.log("position: ", pos)
+//   console.log("position: ", pos)
 
-  // useEffect(() => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         dispatch(setLatitude(position.coords.latitude));
-  //         dispatch(setLongitude(position.coords.longitude));
-  //       },
-  //       (error) => {
-  //         console.error(error);
-  //       },
-  //       { enableHighAccuracy: true, maximumAge: 300000 }
-  //     );
-  //   } else {
-  //     console.error("Geolocation is not supported by this browser.");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          if (position){
+          dispatch(setLatitude(position.coords.latitude));
+          dispatch(setLongitude(position.coords.longitude));
+        }
+      },
+        (error) => {
+          console.error(error);
+        },
+        { enableHighAccuracy: true, maximumAge: 300000 }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   return (
     <section>
