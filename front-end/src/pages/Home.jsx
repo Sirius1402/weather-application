@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setLatitude, setLongitude } from "../redux/slices/coordinatesSlice";
 import { loader, showLoader } from "../redux/slices/loaderSlice";
-import { LoaderVisible } from "../context/LoaderVisible";
 
 const Home = () => {
   const dispatch = useDispatch();

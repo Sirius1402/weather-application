@@ -4,3 +4,5 @@
 - [ ] CSS
 - [ ] Cookie consent
 - [x] Permision to use location
+- [x] Loader in redux
+- [ ] Proxi to back-end

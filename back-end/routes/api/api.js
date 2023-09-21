@@ -5,13 +5,6 @@ const fetch = require("isomorphic-fetch");
 const router = express.Router();
 const weatherKey = "36fd80f87b924f1dbf4204838220704";
 
-router.get("/local/ip", async (req, res) => {
-  const local_url = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=auto:ip&aqi=no`;
-  const local_response = await fetch(local_url);
-  const local_data = await local_response.json();
-  res.json(local_data);
-});
-
 router.get("/local/:lat&:long", async (req, res) => {
   const lat = req.params.lat;
   const long = req.params.long;

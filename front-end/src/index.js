@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -12,15 +12,12 @@ import Home from "./pages/Home";
 import LocalWeather from "./pages/LocalWeather";
 import Forecast from "./pages/Forecast";
 import WorldWeather from "./pages/WorldWeather";
-import LoaderProvider from "./context/LoaderVisible";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <HashRouter>
-          <LoaderProvider>
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
@@ -29,11 +26,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="world-weather" exact element={<WorldWeather />} />
             </Route>
           </Routes>
-          </LoaderProvider>
-          </HashRouter>
-        </PersistGate>
-      </Provider>
-    
+        </HashRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
 

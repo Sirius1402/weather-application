@@ -1,19 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Input from "../components/ww components/Input";
 import Weather from "../components/ww components/Weather";
 import Loader from "../components/Loader";
-import { LoaderVisible } from "../context/LoaderVisible";
 import { regEX } from "../utils";
 import { useInput } from "../hooks/useInput";
+import { loader, showLoader } from "../redux/slices/loaderSlice";
 
 const WorldWeather = () => {
   const [searchedCity, resetCity] = useInput("");
   const [weather, setWeather] = useState();
-  const { isLoading, setIsLoading } = useContext(LoaderVisible);
   const [disabled, setDisabled] = useState(false);
+  const dispatch = useDispatch()
+  const loaderVisible = useSelector(loader)
 
   useEffect(() => {
-    setIsLoading(false);
+    dispatch(showLoader(false));
   }, []);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const WorldWeather = () => {
     if (res.status === 200) {
       const weather = await res.json();
       setWeather(weather);
-      setIsLoading(false);
+      dispatch(showLoader(false));
     } else {
       alert("Wrong request!");
     }
@@ -41,7 +43,7 @@ const WorldWeather = () => {
   };
 
   const displayLoader = () => {
-    setIsLoading(true);
+    dispatch(showLoader(true));
   };
 
   const handleClick = () => {
@@ -50,7 +52,7 @@ const WorldWeather = () => {
     resetCity()
   };
 
-  return isLoading ? (
+  return loaderVisible ? (
     <Loader />
   ) : (
     <section>

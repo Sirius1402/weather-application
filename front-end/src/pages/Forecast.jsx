@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 import Input from "../components/forecast components/Input";
 import DailyForecast from "../components/forecast components/DailyForecast";
 import HourlyForecast from "../components/forecast components/HourlyForecast";
 import Loader from "../components/Loader";
-import { LoaderVisible } from "../context/LoaderVisible";
 import { regEX } from "../utils";
 import { useInput } from "../hooks/useInput";
+import { loader, showLoader } from "../redux/slices/loaderSlice";
 
 const Forecast = () => {
   const [searchedCity, resetCity] = useInput("");
@@ -14,15 +14,16 @@ const Forecast = () => {
   const [showDailyForecast, setShowDailyForecast] = useState(true);
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [showHourlyForecast, setShowHourlyForecast] = useState(false);
-  const { isLoading, setIsLoading } = useContext(LoaderVisible);
   const [disabled, setDisabled] = useState(false);
+  const dispatch = useDispatch()
+  const loaderVisible = useSelector(loader)
 
   useEffect(() => {
     valiadateInput(searchedCity.value);
   }, [searchedCity.value]);
 
   useEffect(() => {
-    setIsLoading(false);
+    dispatch(showLoader(false));
   }, []);
 
   const getForecast = async (city) => {
@@ -30,7 +31,7 @@ const Forecast = () => {
     if (res.status === 200) {
       const forecast = await res.json();
       setForecast(forecast);
-      setIsLoading(false);
+      dispatch(showLoader(false));
     } else {
       alert("Wrong request!");
     }
@@ -51,7 +52,7 @@ const Forecast = () => {
   };
 
   const displayLoader = () => {
-    setIsLoading(true);
+    dispatch(showLoader(true));
   };
 
   const handleChange = (e) => {
@@ -74,7 +75,7 @@ const Forecast = () => {
     setShowHourlyForecast(false);
   };
 
-  return isLoading ? (
+  return loaderVisible ? (
     <Loader />
   ) : (
     <section>
