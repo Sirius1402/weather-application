@@ -1,9 +1,10 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-require("dotenv").config();
+import express from 'express'
+import bodyParser from 'body-parser';
+import cors from 'cors'
+import config from 'dotenv'
 
-const routes = require("./routes");
+
+import routes from './routes/index.js';
 const port = 3003;
 
 
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
 
 routes.map((route) => app.use(route.path, route.router));
 

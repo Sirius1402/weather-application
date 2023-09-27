@@ -27,7 +27,7 @@ const Forecast = () => {
   }, []);
 
   const getForecast = async (city) => {
-    const res = await fetch(`http://localhost:3003/api/forecast/${city}`);
+    const res = await fetch(`/api/forecast/${city}`);
     if (res.status === 200) {
       const forecast = await res.json();
       setForecast(forecast);

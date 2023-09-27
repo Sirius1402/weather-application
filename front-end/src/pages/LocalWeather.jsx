@@ -23,7 +23,7 @@ const LocalWeather = () => {
 
   const getWeather = async (lat, long) => {
     if (lat && long) {
-      const res = await fetch(`http://localhost:3003/api/local/${lat}&${long}`);
+      const res = await fetch(`/api/local/${lat}&${long}`);
       if (res.status === 200) {
         const weather = await res.json();
         setWeather(weather);
@@ -32,7 +32,7 @@ const LocalWeather = () => {
         return;
       }
     } else {
-      const res = await fetch("http://localhost:3003/api/local/london");
+      const res = await fetch("/api/local/london");
       if (res.status === 200) {
         const weather = await res.json();
         setWeather(weather);

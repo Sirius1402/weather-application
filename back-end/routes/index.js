@@ -1,8 +1,9 @@
+import router from "./api/api.js";
 const routeNames = ["api"];
 
 const routes = routeNames.map((name) => ({
   path: `/${name}`,
-  router: require(`./${name}/${name}`),
+  router: router.use(()=>`./${name}/${name}`),
 }));
 
-module.exports = routes
+export default routes

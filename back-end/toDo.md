@@ -1,1 +1,1 @@
-- [ ] ES6 Modules
+- [x] ES6 Modules
