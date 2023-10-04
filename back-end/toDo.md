@@ -1,1 +1,4 @@
 - [x] ES6 Modules
+- [x] Spread objects
+- [ ] Test
+- [ ] URI Sanitize

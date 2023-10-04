@@ -13,14 +13,15 @@ const WorldWeather = () => {
   const [disabled, setDisabled] = useState(false);
   const dispatch = useDispatch()
   const loaderVisible = useSelector(loader)
+  const {value:city, onChange} = searchedCity
 
   useEffect(() => {
     dispatch(showLoader(false));
   }, []);
 
   useEffect(() => {
-    valiadateInput(searchedCity.value);
-  }, [searchedCity.value]);
+    valiadateInput(city);
+  }, [city]);
 
   const getWeather = async (city) => {
     const res = await fetch(`/api/world/${city}`);
@@ -39,7 +40,7 @@ const WorldWeather = () => {
   };
 
   const handleChange = (e) => {
-    searchedCity.onChange(e);
+    onChange(e);
   };
 
   const displayLoader = () => {
@@ -48,7 +49,7 @@ const WorldWeather = () => {
 
   const handleClick = () => {
     displayLoader();
-    getWeather(searchedCity.value);
+    getWeather(city);
     resetCity()
   };
 
@@ -58,7 +59,7 @@ const WorldWeather = () => {
     <section>
       <Input
         handleChange={handleChange}
-        searchedCity={searchedCity.value}
+        searchedCity={city}
         handleClick={handleClick}
         disabled={disabled}
       />

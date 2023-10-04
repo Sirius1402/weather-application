@@ -15,12 +15,14 @@ const Forecast = () => {
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [showHourlyForecast, setShowHourlyForecast] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const dispatch = useDispatch()
-  const loaderVisible = useSelector(loader)
+  const dispatch = useDispatch();
+  const loaderVisible = useSelector(loader);
+  const { value: city, onChange } = searchedCity;
+  const { forecast: { forecastday } = {} } = forecast || {};
 
   useEffect(() => {
-    valiadateInput(searchedCity.value);
-  }, [searchedCity.value]);
+    valiadateInput(city);
+  }, [city]);
 
   useEffect(() => {
     dispatch(showLoader(false));
@@ -38,9 +40,9 @@ const Forecast = () => {
   };
 
   const getHourlyForecast = (date) => {
-    for (let i = 0; i < forecast.forecast.forecastday.length; i++) {
-      if (date === forecast.forecast.forecastday[i].date) {
-        setHourlyForecast(forecast.forecast.forecastday[i].hour);
+    for (let i = 0; i < forecastday.length; i++) {
+      if (date === forecastday[i].date) {
+        setHourlyForecast(forecastday[i].hour);
       }
     }
     return hourlyForecast;
@@ -56,13 +58,13 @@ const Forecast = () => {
   };
 
   const handleChange = (e) => {
-    searchedCity.onChange(e)
+    onChange(e);
   };
 
   const handleClick = () => {
     displayLoader();
-    getForecast(searchedCity.value)
-    resetCity()
+    getForecast(city);
+    resetCity();
   };
 
   const handleForecast = () => {
@@ -81,10 +83,9 @@ const Forecast = () => {
     <section>
       <Input
         handleChange={handleChange}
-        searchedCity={searchedCity.value}
+        searchedCity={city}
         handleClick={handleClick}
         disabled={disabled}
-
       />
       {forecast && (
         <DailyForecast

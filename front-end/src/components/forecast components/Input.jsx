@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({ handleChange, searchedCity, handleClick, disabled, handleEnter }) {
+function Input({ handleChange, searchedCity, handleClick, disabled }) {
   return (
     <div className="ww-card">
       <h1 data-testid="forecast">Forecast</h1>
